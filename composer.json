@@ -1,6 +1,5 @@
 {
     "name": "simplesquid/nova-enum-field",
-    "version": "0.0.5",
     "license": "MIT",
     "description": "A Laravel Nova field for Enums extending on bensampo/laravel-enum.",
     "keywords": [
