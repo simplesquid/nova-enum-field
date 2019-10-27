@@ -16,8 +16,20 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0"
+        "php": "^7.3",
+        "laravel/nova": "^2.0",
+        "illuminate/support": "^5.8|^6.0",
+        "bensampo/laravel-enum": "^1.26"
     },
+    "require-dev": {
+        "orchestra/testbench": "^3.8|^4.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "SimpleSquid\\Nova\\Fields\\Enum\\": "src/"
