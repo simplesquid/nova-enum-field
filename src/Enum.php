@@ -61,7 +61,7 @@ class Enum extends Select
         $attribute
     ) {
         if ($request->exists($requestAttribute)) {
-            $model->{$attribute} = (int) $request[$requestAttribute];
+            $model->{$attribute} = $request[$requestAttribute];
         }
     }
 }
