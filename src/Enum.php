@@ -34,17 +34,16 @@ class Enum extends Select
      */
     public function attachEnum($class)
     {
-        $return = $this->options(call_user_func($class . '::toSelectArray'));
-        $return = $return->rules('required', new EnumValue($class, false));
-        $return = $return->resolveUsing(
-            function ($enum) {
-                return $enum->value;
-            });
-        $return = $return->displayUsing(
-            function ($enum) {
-                return $enum->description;
-            });
-        return $return;
+        return $this->options(call_user_func($class . '::toSelectArray'))
+                    ->rules('required', new EnumValue($class, false))
+                    ->resolveUsing(
+                        function ($enum) {
+                            return $enum->value;
+                        })
+                    ->displayUsing(
+                        function ($enum) {
+                            return $enum->description;
+                        });
     }
 
     /**
