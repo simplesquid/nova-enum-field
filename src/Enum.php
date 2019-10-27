@@ -14,9 +14,10 @@ class Enum extends Select
     /**
      * Create a new field.
      *
-     * @param  string  $name
+     * @param  string                $name
      * @param  string|callable|null  $attribute
-     * @param  callable|null  $resolveCallback
+     * @param  callable|null         $resolveCallback
+     *
      * @return void
      */
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
@@ -28,6 +29,7 @@ class Enum extends Select
      * Setup the Enum field with the Enum class
      *
      * @param  string  $class
+     *
      * @return $this
      */
     public function attachEnum($class)
@@ -49,17 +51,14 @@ class Enum extends Select
      * Hydrate the given attribute on the model based on the incoming request.
      *
      * @param  NovaRequest  $request
-     * @param  string  $requestAttribute
-     * @param  object  $model
-     * @param  string  $attribute
+     * @param  string       $requestAttribute
+     * @param  object       $model
+     * @param  string       $attribute
+     *
      * @return void
      */
-    protected function fillAttributeFromRequest(
-        NovaRequest $request,
-        $requestAttribute,
-        $model,
-        $attribute
-    ) {
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
         }
