@@ -2,8 +2,8 @@
 
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
-use BenSampo\Enum\Rules\EnumValue;
 use PHPUnit\Framework\TestCase;
+use BenSampo\Enum\Rules\EnumValue;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 
 class EnumTest extends TestCase
@@ -28,12 +28,12 @@ class EnumTest extends TestCase
         $this->assertEquals([
                                 [
                                     'label' => 'Administrator',
-                                    'value' => 0
+                                    'value' => 0,
                                 ],
                                 [
                                     'label' => 'Moderator',
-                                    'value' => 1
-                                ]
+                                    'value' => 1,
+                                ],
                             ], $this->field->meta['options']);
     }
 
