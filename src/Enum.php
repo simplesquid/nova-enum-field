@@ -12,20 +12,6 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Enum extends Select
 {
     /**
-     * Create a new field.
-     *
-     * @param  string                $name
-     * @param  string|callable|null  $attribute
-     * @param  callable|null         $resolveCallback
-     *
-     * @return void
-     */
-    public function __construct($name, $attribute = null, callable $resolveCallback = null)
-    {
-        parent::__construct($name, $attribute, $resolveCallback);
-    }
-
-    /**
      * Setup the Enum field with the Enum class
      *
      * @param  string  $class

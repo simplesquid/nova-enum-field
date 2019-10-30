@@ -1,17 +1,17 @@
 # An enum field for Laravel Nova applications
-[![Latest Version](https://img.shields.io/github/release/simplesquid/nova-enum-field.svg?style=flat-square)](https://github.com/simplesquid/nova-enum-field/releases)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-vend)
 
-A Laravel Nova field to add enums to resources. This field uses the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the installation instructions there first.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
+[![Build Status](https://img.shields.io/travis/simplesquid/nova-enum-field/master.svg?style=flat-square)](https://travis-ci.org/simplesquid/nova-enum-field)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Total Downloads](https://img.shields.io/packagist/dt/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
 
-![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/master/img/screenshot.png)
+ Laravel Nova field to add enums to resources. This field uses the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the installation instructions there first.
 
-Contributions, issues and suggestions are very much welcome.
+![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/master/docs/screenshot.png)
 
 ## Installation
 
-You can install this package in a Laravel app that uses  [Nova](https://nova.laravel.com) via composer:
+You can install this package in a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require simplesquid/nova-enum-field
@@ -44,14 +44,35 @@ class User extends Resource
 }
 ```
 
+### Testing
+
+``` bash
+composer test
+```
+
+### Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md).
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+### Security
+
+If you discover any security related issues, please email security@simplesquid.co.za instead of using the issue tracker.
 
 ## Credits
 
 - [Matthew Poulter](https://github.com/mdpoulter)
+- [All Contributors](../../contributors)
+
+Package skeleton based on [spatie/skeleton-php](https://github.com/spatie/skeleton-php).
+
+## About us
+
+SimpleSquid is a small web development and design company based in Cape Town, South Africa.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
