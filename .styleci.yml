@@ -1,4 +1,8 @@
 preset: laravel
 
+enabled:
+  - concat_with_spaces
+
 disabled:
   - self_accessor
+  - concat_without_spaces
