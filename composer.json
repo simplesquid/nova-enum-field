@@ -1,18 +1,28 @@
 {
     "name": "simplesquid/nova-enum-field",
-    "license": "MIT",
-    "description": "A Laravel Nova field for Enums extending on bensampo/laravel-enum.",
+    "description": "A Laravel Nova field to add enums to resources.",
     "keywords": [
+        "simplesquid",
         "laravel",
         "nova",
         "field",
-        "enum"
+        "enum",
+        "nova-enum-field"
     ],
+    "homepage": "https://github.com/simplesquid/nova-enum-field",
+    "license": "MIT",
     "authors": [
         {
             "name": "Matthew Poulter",
             "email": "matthew.poulter@simplesquid.co.za",
+            "homepage": "https://simplesquid.co.za/",
             "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "require": {
@@ -22,29 +32,24 @@
         "bensampo/laravel-enum": "^1.26"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.8|^4.0"
+        "symfony/var-dumper": "^4.3",
+        "orchestra/testbench": "^3.8|^4.0",
+        "phpunit/phpunit": "^8.2"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
-            "SimpleSquid\\Nova\\Fields\\Enum\\": "src/"
+            "SimpleSquid\\Nova\\Fields\\Enum\\": "src"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "SimpleSquid\\Nova\\Fields\\Enum\\FieldServiceProvider"
-            ]
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleSquid\\Nova\\Fields\\Enum\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
