@@ -20,8 +20,6 @@ Before submitting a pull request:
 
 ## Requirements
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)**: The easiest way to apply the conventions is to install [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer).
-
 - **Tests, tests, tests!**: Your pull request won't be accepted if it doesn't have tests.
 
 - **Document behaviour changes**: Make sure the `README.md` and any other relevant documentation are kept up-to-date.
