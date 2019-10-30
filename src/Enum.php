@@ -5,14 +5,14 @@
 
 namespace SimpleSquid\Nova\Fields\Enum;
 
-use BenSampo\Enum\Rules\EnumValue;
 use Laravel\Nova\Fields\Select;
+use BenSampo\Enum\Rules\EnumValue;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Enum extends Select
 {
     /**
-     * Setup the Enum field with the Enum class
+     * Setup the Enum field with the Enum class.
      *
      * @param  string  $class
      *
