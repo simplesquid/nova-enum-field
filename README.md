@@ -1,4 +1,4 @@
-# An enum field for Laravel Nova applications
+# An enum field for Laravel Nova
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
 [![Build Status](https://img.shields.io/travis/simplesquid/nova-enum-field/master.svg?style=flat-square)](https://travis-ci.org/simplesquid/nova-enum-field)
