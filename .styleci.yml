@@ -6,5 +6,4 @@ enabled:
 
 disabled:
   - concat_without_spaces
-  - length_ordered_imports
   - self_accessor
