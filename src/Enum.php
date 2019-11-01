@@ -5,8 +5,8 @@
 
 namespace SimpleSquid\Nova\Fields\Enum;
 
-use Laravel\Nova\Fields\Select;
 use BenSampo\Enum\Rules\EnumValue;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Enum extends Select

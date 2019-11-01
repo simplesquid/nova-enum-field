@@ -2,8 +2,8 @@
 
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
-use PHPUnit\Framework\TestCase;
 use BenSampo\Enum\Rules\EnumValue;
+use PHPUnit\Framework\TestCase;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 
 class EnumTest extends TestCase
