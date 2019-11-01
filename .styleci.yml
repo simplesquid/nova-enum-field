@@ -1,8 +1,10 @@
 preset: laravel
 
 enabled:
+  - alpha_ordered_imports
   - concat_with_spaces
 
 disabled:
-  - self_accessor
   - concat_without_spaces
+  - length_ordered_imports
+  - self_accessor
