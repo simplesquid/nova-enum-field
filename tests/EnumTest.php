@@ -26,15 +26,15 @@ class EnumTest extends TestCase
         $this->assertArrayHasKey('options', $this->field->meta);
 
         $this->assertEquals([
-                                [
-                                    'label' => 'Administrator',
-                                    'value' => 0,
-                                ],
-                                [
-                                    'label' => 'Moderator',
-                                    'value' => 1,
-                                ],
-                            ], $this->field->meta['options']);
+            [
+                'label' => 'Administrator',
+                'value' => 0,
+            ],
+            [
+                'label' => 'Moderator',
+                'value' => 1,
+            ],
+        ], $this->field->meta['options']);
     }
 
     /** @test */
