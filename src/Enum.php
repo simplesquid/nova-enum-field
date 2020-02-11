@@ -24,11 +24,11 @@ class Enum extends Select
                     ->rules('required', new EnumValue($class, false))
                     ->resolveUsing(
                         function ($enum) {
-                            return $enum->value;
+                            return $enum ? $enum->value : null;
                         })
                     ->displayUsing(
                         function ($enum) {
-                            return $enum->description;
+                            return $enum ? $enum->description : null;
                         });
     }
 
