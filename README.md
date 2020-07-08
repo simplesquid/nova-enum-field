@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Model;
 class Example extends Model
 {
     protected $casts = [
-        'user_type' => 'int',
         'user_type' => UserType::class,
     ];
 }
