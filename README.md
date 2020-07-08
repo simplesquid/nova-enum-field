@@ -22,21 +22,13 @@ composer require simplesquid/nova-enum-field
 This package requires that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
 
 ```php
-use BenSampo\Enum\Traits\CastsEnums;
 use BenSampo\Enum\Tests\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
 {
-    use CastsEnums;
-
-    protected $enumCasts = [
-        // 'attribute_name' => Enum::class
-        'user_type' => UserType::class,
-    ];
-
     protected $casts = [
-        'user_type' => 'int',
+        'user_type' => UserType::class,
     ];
 }
 ```
