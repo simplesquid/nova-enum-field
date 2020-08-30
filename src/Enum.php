@@ -5,8 +5,9 @@
 
 namespace SimpleSquid\Nova\Fields\Enum;
 
-use BenSampo\Enum\Rules\EnumValue;
 use Laravel\Nova\Fields\Select;
+use BenSampo\Enum\Rules\EnumValue;
+use Illuminate\Contracts\Support\Arrayable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Enum extends Select
@@ -14,14 +15,14 @@ class Enum extends Select
     /**
      * Setup the Enum field with the Enum class.
      *
-     * @param  string  $class
+     * @param  string  $enumClass
      *
      * @return $this
      */
-    public function attachEnum($class)
+    public function attachEnum($enumClass)
     {
-        return $this->options(call_user_func($class . '::toSelectArray'))
-                    ->rules('required', new EnumValue($class, false))
+        return $this->options($this->getEnumOptions($enumClass))
+                    ->rules('required', new EnumValue($enumClass, false))
                     ->resolveUsing(
                         function ($enum) {
                             return $enum ? $enum->value : null;
@@ -47,5 +48,15 @@ class Enum extends Select
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = $request[$requestAttribute];
         }
+    }
+
+    protected function getEnumOptions(string $enumClass): array
+    {
+        // Since laravel-enum v2.2.0, the method has been named 'asSelectArray'
+        if (in_array(Arrayable::class, class_implements($enumClass))) {
+            return $enumClass::asSelectArray();
+        }
+
+        return $enumClass::toSelectArray();
     }
 }
