@@ -25,11 +25,11 @@ class Enum extends Select
                     ->rules('required', new EnumValue($enumClass, false))
                     ->resolveUsing(
                         function ($enum) {
-                            return $enum ? $enum->value : null;
+                            return $enum instanceof \BenSampo\Enum\Enum ? $enum->value : $enum;
                         })
                     ->displayUsing(
                         function ($enum) {
-                            return $enum ? $enum->description : null;
+                            return $enum instanceof \BenSampo\Enum\Enum ? $enum->description : $enum;
                         });
     }
 
