@@ -26,14 +26,14 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "laravel/nova": "^3.0",
-        "illuminate/support": "^7.0",
-        "bensampo/laravel-enum": "^2.0"
+        "illuminate/support": "^7.0|^8.0",
+        "bensampo/laravel-enum": "^2.0|^3.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.0",
-        "orchestra/testbench": "^5.0",
+        "orchestra/testbench": "^5.0|^6.0",
         "phpunit/phpunit": "^8.2|^9.0"
     },
     "autoload": {
