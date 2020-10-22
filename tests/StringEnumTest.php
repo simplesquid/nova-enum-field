@@ -10,7 +10,7 @@ class StringEnumTest extends TestCase
     /** @var \SimpleSquid\Nova\Fields\Enum\Enum */
     private $field;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class StringEnumTest extends TestCase
     {
         $this->field->resolve(['enum_field' => ExampleStringEnum::Moderator]);
 
-        $this->assertEquals('moderator', $this->field->value);
+        $this->assertSame('moderator', $this->field->value);
     }
 
     /** @test */
@@ -32,6 +32,6 @@ class StringEnumTest extends TestCase
     {
         $this->field->resolveForDisplay(['enum_field' => ExampleStringEnum::Moderator]);
 
-        $this->assertEquals('moderator', $this->field->value);
+        $this->assertSame('moderator', $this->field->value);
     }
 }
