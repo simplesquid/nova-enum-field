@@ -81,6 +81,9 @@ If you discover any security related issues, please email security@simplesquid.c
 ## Credits
 
 - [Matthew Poulter](https://github.com/mdpoulter)
+- [Ben Sampson](https://github.com/BenSampo)
+- [atymic](https://github.com/atymic)
+- [Robin D'Arcy](https://github.com/rdarcy1)
 - [All Contributors](../../contributors)
 
 Package skeleton based on [spatie/skeleton-php](https://github.com/spatie/skeleton-php).
