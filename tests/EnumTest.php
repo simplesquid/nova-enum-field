@@ -11,7 +11,7 @@ class EnumTest extends TestCase
     /** @var \SimpleSquid\Nova\Fields\Enum\Enum */
     private $field;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -50,7 +50,7 @@ class EnumTest extends TestCase
     {
         $this->field->resolve(['enum_field' => ExampleEnum::Moderator()]);
 
-        $this->assertEquals(1, $this->field->value);
+        $this->assertSame(1, $this->field->value);
     }
 
     /** @test */
@@ -58,6 +58,6 @@ class EnumTest extends TestCase
     {
         $this->field->resolveForDisplay(['enum_field' => ExampleEnum::Moderator()]);
 
-        $this->assertEquals('Moderator', $this->field->value);
+        $this->assertSame('Moderator', $this->field->value);
     }
 }
