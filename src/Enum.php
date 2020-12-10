@@ -26,11 +26,13 @@ class Enum extends Select
                     ->resolveUsing(
                         function ($enum) {
                             return $enum instanceof \BenSampo\Enum\Enum ? $enum->value : $enum;
-                        })
+                        }
+                    )
                     ->displayUsing(
                         function ($enum) {
                             return $enum instanceof \BenSampo\Enum\Enum ? $enum->description : $enum;
-                        });
+                        }
+                    );
     }
 
     /**
