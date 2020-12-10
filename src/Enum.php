@@ -15,7 +15,7 @@ class Enum extends Select
     /**
      * Setup the Enum field with the Enum class.
      *
-     * @param  string  $enumClass
+     * @param string $enumClass
      *
      * @return $this
      */
@@ -26,20 +26,22 @@ class Enum extends Select
                     ->resolveUsing(
                         function ($enum) {
                             return $enum instanceof \BenSampo\Enum\Enum ? $enum->value : $enum;
-                        })
+                        }
+                    )
                     ->displayUsing(
                         function ($enum) {
                             return $enum instanceof \BenSampo\Enum\Enum ? $enum->description : $enum;
-                        });
+                        }
+                    );
     }
 
     /**
      * Hydrate the given attribute on the model based on the incoming request.
      *
-     * @param  NovaRequest  $request
-     * @param  string       $requestAttribute
-     * @param  object       $model
-     * @param  string       $attribute
+     * @param NovaRequest $request
+     * @param string      $requestAttribute
+     * @param object      $model
+     * @param string      $attribute
      *
      * @return void
      */
