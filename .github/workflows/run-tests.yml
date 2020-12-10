@@ -9,8 +9,8 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        php: [ 8.0, 7.4 ]
-        laravel: [ 8.*, 7.* ]
+        php: [ 7.4, 8.0 ]
+        laravel: [ 7.*, 8.* ]
         stability: [ prefer-lowest, prefer-stable ]
         include:
           - laravel: 7.*
@@ -20,41 +20,41 @@ jobs:
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
-  services:
-    mysql:
-      image: mysql:5.7
-      env:
-        MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        MYSQL_DATABASE: nova-enum-field
-      ports:
-        - 3306
-      options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-suggest
+    services:
+      mysql:
+        image: mysql:5.7
         env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: nova-enum-field
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Cache dependencies
+          uses: actions/cache@v2
+          with:
+            path: ~/.composer/cache/files
+            key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+            coverage: none
+
+        - name: Install dependencies
+          run: |
+            composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+            composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-suggest
+          env:
+            COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+        - name: Execute tests
+          run: vendor/bin/phpunit
+          env:
+            DB_PORT: ${{ job.services.mysql.ports[3306] }}
