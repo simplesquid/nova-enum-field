@@ -22,11 +22,14 @@ composer require simplesquid/nova-enum-field
 This package requires that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
 
 ```php
+use BenSampo\Enum\Traits\CastsEnums;
 use BenSampo\Enum\Tests\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
 {
+    use CastsEnums;
+
     protected $casts = [
         'user_type' => UserType::class,
     ];
@@ -40,10 +43,10 @@ You can use the `Enum` field in your Nova resource like so:
 ```php
 namespace App\Nova;
 
-use App\Enums\UserRole;
+use BenSampo\Enum\Tests\Enums\UserType;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 
-class User extends Resource
+class Example extends Resource
 {
     // ...
 
@@ -52,7 +55,7 @@ class User extends Resource
         return [
             // ...
 
-            Enum::make('Role')->attachEnum(UserRole::class),
+            Enum::make('User Type')->attachEnum(UserType::class),
 
             // ...
         ];
