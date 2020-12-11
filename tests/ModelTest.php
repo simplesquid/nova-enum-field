@@ -2,6 +2,7 @@
 
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
+use Laravel\Nova\Http\Requests\NovaRequest;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleIntegerEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleModel;
@@ -45,7 +46,7 @@ class ModelTest extends TestCase
 
         $this->model->enum = ExampleIntegerEnum::Subscriber();
 
-        $field->fill(null, $this->model);
+        $field->fill(new NovaRequest(), $this->model);
 
         $this->assertDatabaseHas('example_models', ['enum' => 2]);
         $this->assertDatabaseMissing('example_models', ['enum' => 1]);
