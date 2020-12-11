@@ -2,7 +2,6 @@
 
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
-use PHPUnit\Framework\TestCase;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleStringEnum;
 
@@ -17,7 +16,7 @@ class StringEnumTest extends TestCase
 
         $this->field = Enum::make('Enum');
 
-        $this->field->attachEnum(ExampleStringEnum::class);
+        $this->field->attach(ExampleStringEnum::class);
     }
 
     /** @test */

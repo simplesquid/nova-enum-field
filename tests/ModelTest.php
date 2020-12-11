@@ -16,13 +16,15 @@ class ModelTest extends TestCase
     {
         parent::setUp();
 
+        $this->setUpDatabase($this->app);
+
         $this->model = ExampleModel::create(['enum' => ExampleIntegerEnum::Moderator()]);
     }
 
     /** @test */
     public function field_resolves_correct_value()
     {
-        $field = Enum::make('Enum')->attachEnum(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
 
         $field->resolve($this->model);
 
@@ -32,7 +34,7 @@ class ModelTest extends TestCase
     /** @test */
     public function field_displays_correct_description()
     {
-        $field = Enum::make('Enum')->attachEnum(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
 
         $field->resolveForDisplay($this->model);
 
@@ -42,7 +44,7 @@ class ModelTest extends TestCase
     /** @test */
     public function field_fills_database_with_enum_value()
     {
-        $field = Enum::make('Enum')->attachEnum(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
 
         $request = new NovaRequest();
         $request->query->add(['enum' => ExampleIntegerEnum::Subscriber()]);

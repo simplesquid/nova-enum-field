@@ -3,7 +3,6 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use BenSampo\Enum\Rules\EnumValue;
-use PHPUnit\Framework\TestCase;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleIntegerEnum;
 
@@ -18,18 +17,16 @@ class IntegerEnumTest extends TestCase
 
         $this->field = Enum::make('Enum');
 
-        $this->field->attachEnum(ExampleIntegerEnum::class);
+        $this->field->attach(ExampleIntegerEnum::class);
     }
 
     /** @test */
-    public function field_starts_with_zero_config()
+    public function field_starts_with_no_options_and_rules()
     {
         $field = Enum::make('Enum');
 
-        $this->assertEmpty($field->meta);
+        $this->assertArrayNotHasKey('options', $field->meta);
         $this->assertEmpty($field->rules);
-        $this->assertNull($field->resolveCallback);
-        $this->assertNull($field->displayCallback);
     }
 
     /** @test */

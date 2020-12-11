@@ -55,7 +55,7 @@ class Example extends Resource
         return [
             // ...
 
-            Enum::make('User Type')->attachEnum(UserType::class),
+            Enum::make('User Type')->attach(UserType::class),
 
             // ...
         ];

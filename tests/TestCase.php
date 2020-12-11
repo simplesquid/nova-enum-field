@@ -4,19 +4,17 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
+use SimpleSquid\Nova\Fields\Enum\EnumFieldServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    protected function getPackageProviders($app)
     {
-        parent::setUp();
-
-        $this->setUpDatabase($this->app);
+        return [
+            EnumFieldServiceProvider::class,
+        ];
     }
 
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     */
     protected function setUpDatabase($app)
     {
         $this->artisan('migrate:fresh');

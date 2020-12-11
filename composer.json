@@ -47,6 +47,13 @@
             "SimpleSquid\\Nova\\Fields\\Enum\\Tests\\": "tests"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SimpleSquid\\Nova\\Fields\\Enum\\EnumFieldServiceProvider"
+            ]
+        }
+    },
     "scripts": {
         "test": "vendor/bin/phpunit --colors=always"
     },
