@@ -44,9 +44,12 @@ class ModelTest extends TestCase
     {
         $field = Enum::make('Enum')->attachEnum(ExampleIntegerEnum::class);
 
-        $this->model->enum = ExampleIntegerEnum::Subscriber();
+        $request = new NovaRequest();
+        $request->attributes->add(['enum' => ExampleIntegerEnum::Subscriber()]);
 
-        $field->fill(new NovaRequest(), $this->model);
+        $field->fill($request, $this->model);
+
+        $this->model->save();
 
         $this->assertDatabaseHas('example_models', ['enum' => 2]);
         $this->assertDatabaseMissing('example_models', ['enum' => 1]);
