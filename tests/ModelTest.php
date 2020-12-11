@@ -45,7 +45,7 @@ class ModelTest extends TestCase
         $field = Enum::make('Enum')->attachEnum(ExampleIntegerEnum::class);
 
         $request = new NovaRequest();
-        $request->attributes->add(['enum' => ExampleIntegerEnum::Subscriber()]);
+        $request->query->add(['enum' => ExampleIntegerEnum::Subscriber()]);
 
         $field->fill($request, $this->model);
 
