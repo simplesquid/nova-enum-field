@@ -4,6 +4,7 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSquid\Nova\Fields\Enum\Enum;
+use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleStringEnum;
 
 class StringEnumTest extends TestCase
 {
@@ -14,7 +15,7 @@ class StringEnumTest extends TestCase
     {
         parent::setUp();
 
-        $this->field = Enum::make('Enum Field');
+        $this->field = Enum::make('Enum');
 
         $this->field->attachEnum(ExampleStringEnum::class);
     }
@@ -22,7 +23,7 @@ class StringEnumTest extends TestCase
     /** @test */
     public function field_resolves_correct_value()
     {
-        $this->field->resolve(['enum_field' => ExampleStringEnum::Moderator]);
+        $this->field->resolve(['enum' => ExampleStringEnum::Moderator()]);
 
         $this->assertSame('moderator', $this->field->value);
     }
@@ -30,8 +31,8 @@ class StringEnumTest extends TestCase
     /** @test */
     public function field_displays_correct_description()
     {
-        $this->field->resolveForDisplay(['enum_field' => ExampleStringEnum::Moderator]);
+        $this->field->resolveForDisplay(['enum' => ExampleStringEnum::Moderator()]);
 
-        $this->assertSame('moderator', $this->field->value);
+        $this->assertSame('Moderator', $this->field->value);
     }
 }

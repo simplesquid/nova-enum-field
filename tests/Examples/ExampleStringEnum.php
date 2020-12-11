@@ -1,15 +1,19 @@
 <?php
 
-namespace SimpleSquid\Nova\Fields\Enum\Tests;
+namespace SimpleSquid\Nova\Fields\Enum\Tests\Examples;
 
 use BenSampo\Enum\Enum;
 
 /**
  * @method static Administrator()
  * @method static Moderator()
+ * @method static Subscriber()
  */
 class ExampleStringEnum extends Enum
 {
     const Administrator = 'administrator';
+
     const Moderator = 'moderator';
+
+    const Subscriber = 'subscriber';
 }
