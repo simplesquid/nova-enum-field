@@ -5,7 +5,9 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
 
-Laravel Nova field to add enums to resources. This field uses the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the installation instructions there first.
+Laravel Nova field to add enums to resources. This field uses
+the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the
+installation instructions there first.
 
 ![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/master/docs/screenshot.png)
 
@@ -19,11 +21,12 @@ composer require simplesquid/nova-enum-field
 
 ## Setup
 
-This package requires that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
+This package requires that you use Attribute Casting in your models. From the docs
+at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
 
 ```php
+use App\Enums\UserType;
 use BenSampo\Enum\Traits\CastsEnums;
-use BenSampo\Enum\Tests\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
@@ -43,7 +46,7 @@ You can use the `Enum` field in your Nova resource like so:
 ```php
 namespace App\Nova;
 
-use BenSampo\Enum\Tests\Enums\UserType;
+use App\Enums\UserType;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 
 class Example extends Resource
@@ -58,6 +61,30 @@ class Example extends Resource
             Enum::make('User Type')->attach(UserType::class),
 
             // ...
+        ];
+    }
+}
+```
+
+If you would like to use the provided Nova filter, you can include it as such:
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserType;
+use SimpleSquid\Nova\Fields\Enum\EnumFilter;
+
+class Example extends Resource
+{
+    // ...
+
+    public function filters(Request $request)
+    {
+        return [
+            new EnumFilter('user_type', UserType::class),
+            
+            // Or with optional filter name:
+            // new EnumFilter('user_type', UserType::class, 'Type of user'),
         ];
     }
 }
