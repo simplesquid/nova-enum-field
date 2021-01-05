@@ -7,7 +7,7 @@
 
 Laravel Nova field to add enums to resources. This field uses the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the installation instructions there first.
 
-![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/master/docs/screenshot.png)
+![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/main/docs/screenshot.png)
 
 ## Installation
 
