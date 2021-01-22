@@ -66,7 +66,9 @@ class Example extends Resource
 }
 ```
 
-If you would like to use the provided Nova filter, you can include it as such:
+### Filters
+
+If you would like to use the provided Nova Select filter, you can include it as such:
 
 ```php
 namespace App\Nova;
@@ -85,6 +87,30 @@ class Example extends Resource
             
             // Or with optional filter name:
             // new EnumFilter('user_type', UserType::class, 'Type of user'),
+        ];
+    }
+}
+```
+
+Alternatively, you may wish to use the provided Nova Boolean filter:
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserType;
+use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
+
+class Example extends Resource
+{
+    // ...
+
+    public function filters(Request $request)
+    {
+        return [
+            new EnumBooleanFilter('user_type', UserType::class),
+            
+            // Or with optional filter name:
+            // new EnumBooleanFilter('user_type', UserType::class, 'Type of user'),
         ];
     }
 }
