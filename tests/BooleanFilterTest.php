@@ -4,7 +4,6 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
 use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
-use SimpleSquid\Nova\Fields\Enum\EnumFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 
 class BooleanFilterTest extends TestCase

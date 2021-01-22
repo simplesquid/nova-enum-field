@@ -60,8 +60,8 @@ class IntegerBooleanFilterTest extends TestCase
         int $count
     ) {
         $value = [
-            IntegerEnum::Subscriber    => $subscriber,
-            IntegerEnum::Moderator     => $moderator,
+            IntegerEnum::Subscriber => $subscriber,
+            IntegerEnum::Moderator => $moderator,
             IntegerEnum::Administrator => $administrator,
         ];
 
@@ -81,8 +81,8 @@ class IntegerBooleanFilterTest extends TestCase
         int $count
     ) {
         $value = [
-            IntegerEnum::Subscriber    => $subscriber,
-            IntegerEnum::Moderator     => $moderator,
+            IntegerEnum::Subscriber => $subscriber,
+            IntegerEnum::Moderator => $moderator,
             IntegerEnum::Administrator => $administrator,
         ];
 

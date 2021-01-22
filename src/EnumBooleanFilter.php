@@ -17,7 +17,7 @@ class EnumBooleanFilter extends BooleanFilter
         $this->column = $column;
         $this->class = $class;
 
-        if (!is_null($name)) {
+        if (! is_null($name)) {
             $this->name = $name;
         }
     }
