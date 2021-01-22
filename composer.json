@@ -33,6 +33,8 @@
         "laravel/nova": "^3.0"
     },
     "require-dev": {
+        "joshgaber/novaunit": "^2.2",
+        "nunomaduro/collision": "^5.2",
         "orchestra/testbench": "^5.0|^6.0",
         "phpunit/phpunit": "^8.2|^9.0",
         "symfony/var-dumper": "^5.0"

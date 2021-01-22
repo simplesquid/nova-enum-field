@@ -5,7 +5,7 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests\Examples;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 
-class ExampleModel extends Model
+class StringModel extends Model
 {
     use CastsEnums;
 
@@ -16,6 +16,6 @@ class ExampleModel extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'enum' => ExampleIntegerEnum::class,
+        'enum' => StringEnum::class,
     ];
 }

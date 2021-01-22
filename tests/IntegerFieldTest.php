@@ -4,9 +4,9 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use BenSampo\Enum\Rules\EnumValue;
 use SimpleSquid\Nova\Fields\Enum\Enum;
-use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleIntegerEnum;
+use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 
-class IntegerEnumTest extends TestCase
+class IntegerFieldTest extends TestCase
 {
     /** @var \SimpleSquid\Nova\Fields\Enum\Enum */
     private $field;
@@ -17,11 +17,11 @@ class IntegerEnumTest extends TestCase
 
         $this->field = Enum::make('Enum');
 
-        $this->field->attach(ExampleIntegerEnum::class);
+        $this->field->attach(IntegerEnum::class);
     }
 
     /** @test */
-    public function field_starts_with_no_options_and_rules()
+    public function it_starts_with_no_options_and_rules()
     {
         $field = Enum::make('Enum');
 
@@ -30,7 +30,7 @@ class IntegerEnumTest extends TestCase
     }
 
     /** @test */
-    public function an_enum_can_be_attached_to_the_field()
+    public function an_enum_can_be_attached_to_it()
     {
         $this->assertArrayHasKey('options', $this->field->meta);
 
@@ -55,21 +55,21 @@ class IntegerEnumTest extends TestCase
     {
         $this->assertContains('required', $this->field->rules);
 
-        $this->assertContainsEquals(new EnumValue(ExampleIntegerEnum::class, false), $this->field->rules);
+        $this->assertContainsEquals(new EnumValue(IntegerEnum::class, false), $this->field->rules);
     }
 
     /** @test */
-    public function field_resolves_correct_value()
+    public function it_resolves_correct_value()
     {
-        $this->field->resolve(['enum' => ExampleIntegerEnum::Moderator()]);
+        $this->field->resolve(['enum' => IntegerEnum::Moderator()]);
 
         $this->assertSame(1, $this->field->value);
     }
 
     /** @test */
-    public function field_displays_correct_description()
+    public function it_displays_correct_description()
     {
-        $this->field->resolveForDisplay(['enum' => ExampleIntegerEnum::Moderator()]);
+        $this->field->resolveForDisplay(['enum' => IntegerEnum::Moderator()]);
 
         $this->assertSame('Moderator', $this->field->value);
     }

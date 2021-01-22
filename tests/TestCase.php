@@ -15,13 +15,13 @@ abstract class TestCase extends Orchestra
         ];
     }
 
-    protected function setUpDatabase($app)
+    protected function setUpDatabase($app, $type = 'integer')
     {
         $this->artisan('migrate:fresh');
 
-        $app['db']->connection()->getSchemaBuilder()->create('example_models', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('example_models', function (Blueprint $table) use ($type) {
             $table->increments('id');
-            $table->integer('enum');
+            $table->$type('enum');
         });
     }
 }

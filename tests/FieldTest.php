@@ -4,12 +4,12 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use SimpleSquid\Nova\Fields\Enum\Enum;
-use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleIntegerEnum;
-use SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleModel;
+use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
+use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerModel;
 
-class ModelTest extends TestCase
+class FieldTest extends TestCase
 {
-    /** @var \SimpleSquid\Nova\Fields\Enum\Tests\Examples\ExampleModel */
+    /** @var \SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerModel */
     private $model;
 
     protected function setUp(): void
@@ -18,13 +18,13 @@ class ModelTest extends TestCase
 
         $this->setUpDatabase($this->app);
 
-        $this->model = ExampleModel::create(['enum' => ExampleIntegerEnum::Moderator()]);
+        $this->model = IntegerModel::create(['enum' => IntegerEnum::Moderator()]);
     }
 
     /** @test */
-    public function field_resolves_correct_value()
+    public function it_resolves_correct_value()
     {
-        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(IntegerEnum::class);
 
         $field->resolve($this->model);
 
@@ -32,9 +32,9 @@ class ModelTest extends TestCase
     }
 
     /** @test */
-    public function field_displays_correct_description()
+    public function it_displays_correct_description()
     {
-        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(IntegerEnum::class);
 
         $field->resolveForDisplay($this->model);
 
@@ -42,12 +42,12 @@ class ModelTest extends TestCase
     }
 
     /** @test */
-    public function field_fills_database_with_enum_value()
+    public function it_fills_database_with_enum_value()
     {
-        $field = Enum::make('Enum')->attach(ExampleIntegerEnum::class);
+        $field = Enum::make('Enum')->attach(IntegerEnum::class);
 
         $request = new NovaRequest();
-        $request->query->add(['enum' => ExampleIntegerEnum::Subscriber()]);
+        $request->query->add(['enum' => IntegerEnum::Subscriber()]);
 
         $field->fill($request, $this->model);
 
