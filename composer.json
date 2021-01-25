@@ -51,9 +51,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "SimpleSquid\\Nova\\Fields\\Enum\\EnumFieldServiceProvider"
-            ]
+            "providers": []
         }
     },
     "scripts": {
