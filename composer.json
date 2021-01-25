@@ -27,7 +27,7 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "bensampo/laravel-enum": "^3.0",
+        "bensampo/laravel-enum": "^3.1",
         "illuminate/support": "^8.0",
         "laravel/nova": "^3.0"
     },
