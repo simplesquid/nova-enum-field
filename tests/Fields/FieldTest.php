@@ -52,7 +52,7 @@ class FieldTest extends TestCase
         foreach (IntegerEnum::getValues() as $enum) {
             $this->assertContains([
                                       'label' => IntegerEnum::getDescription($enum),
-                                      'value' => $enum
+                                      'value' => $enum,
                                   ], $this->field->meta['options']);
         }
     }

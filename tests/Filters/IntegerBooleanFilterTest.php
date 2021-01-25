@@ -31,9 +31,9 @@ class IntegerBooleanFilterTest extends TestCase
         $this->models[2] = IntegerModel::create(['enum' => IntegerEnum::Administrator]);
 
         $this->results = [
-            IntegerEnum::Moderator     => [0, 1],
+            IntegerEnum::Moderator => [0, 1],
             IntegerEnum::Administrator => [2],
-            IntegerEnum::Subscriber    => [],
+            IntegerEnum::Subscriber => [],
         ];
     }
 

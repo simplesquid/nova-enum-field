@@ -19,7 +19,7 @@ class FlaggedEnum extends BooleanGroup
     {
         $this->resolveUsing(
             function ($value) use ($class) {
-                if (!$value instanceof \BenSampo\Enum\FlaggedEnum) {
+                if (! $value instanceof \BenSampo\Enum\FlaggedEnum) {
                     return $value;
                 }
 

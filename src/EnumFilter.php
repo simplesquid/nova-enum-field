@@ -32,6 +32,7 @@ class EnumFilter extends Filter
         }
 
         $this->name = $name;
+
         return $this;
     }
 

@@ -49,6 +49,7 @@ class EnumBooleanFilter extends BooleanFilter
         }
 
         $this->name = $name;
+
         return $this;
     }
 

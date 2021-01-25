@@ -31,15 +31,15 @@ class FlaggedFilterTest extends TestCase
         $this->models[2] = FlaggedModel::create([
                                                     'enum' => array_sum([
                                                                             FlaggedEnum::ReadComments,
-                                                                            FlaggedEnum::WriteComments
-                                                                        ])
+                                                                            FlaggedEnum::WriteComments,
+                                                                        ]),
                                                 ]);
 
         $this->results = [
-            FlaggedEnum::None          => [0],
-            FlaggedEnum::ReadComments  => [1, 2],
+            FlaggedEnum::None => [0],
+            FlaggedEnum::ReadComments => [1, 2],
             FlaggedEnum::WriteComments => [2],
-            FlaggedEnum::EditComments  => [],
+            FlaggedEnum::EditComments => [],
         ];
     }
 

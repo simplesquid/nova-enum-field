@@ -15,9 +15,9 @@ class FlaggedFieldTest extends TestCase
     private $model;
 
     private $values = [
-        FlaggedEnum::ReadComments  => true,
+        FlaggedEnum::ReadComments => true,
         FlaggedEnum::WriteComments => true,
-        FlaggedEnum::EditComments  => false,
+        FlaggedEnum::EditComments => false,
     ];
 
     protected function setUp(): void
@@ -63,7 +63,7 @@ class FlaggedFieldTest extends TestCase
 
             $this->assertContains([
                                       'label' => FlaggedEnum::getDescription($enum),
-                                      'name'  => $enum
+                                      'name' => $enum,
                                   ], $this->field->options);
         }
     }
@@ -103,7 +103,7 @@ class FlaggedFieldTest extends TestCase
         $this->model->save();
 
         $this->assertDatabaseHas('example_models', [
-            'enum' => array_sum(array_keys(array_filter($this->values)))
+            'enum' => array_sum(array_keys(array_filter($this->values))),
         ]);
 
         $this->assertDatabaseMissing('example_models', ['enum' => FlaggedEnum::None]);
