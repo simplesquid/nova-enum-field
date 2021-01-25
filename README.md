@@ -5,9 +5,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
 
-Laravel Nova field to add enums to resources. This field uses
-the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the
-installation instructions there first.
+Laravel Nova field to add enums to resources. This field uses the [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum) package, so make sure to check out the installation instructions there first.
 
 ![Screenshot of the enum field](https://github.com/simplesquid/nova-enum-field/raw/master/docs/screenshot.png)
 
@@ -21,8 +19,7 @@ composer require simplesquid/nova-enum-field
 
 ## Setup
 
-This package requires that you use Attribute Casting in your models. From the docs
-at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
+It is strongly recommended that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like this:
 
 ```php
 use App\Enums\UserType;
@@ -41,7 +38,7 @@ class Example extends Model
 
 ## Usage
 
-You can use the `Enum` field in your Nova resource like so:
+You can use the `Enum` field in your Nova resource like this:
 
 ```php
 namespace App\Nova;
@@ -66,13 +63,41 @@ class Example extends Resource
 }
 ```
 
-### Filters
+### Flagged Enums
 
-If you would like to use the provided Nova Select filter, you can include it as such:
+You can use the `FlaggedEnum` field in your Nova resource like this (see [Flagged/Bitwise Enum](https://github.com/BenSampo/laravel-enum#flaggedbitwise-enum) setup):
 
 ```php
 namespace App\Nova;
 
+use App\Enums\UserPermissions;
+use SimpleSquid\Nova\Fields\Enum\FlaggedEnum;
+
+class Example extends Resource
+{
+    // ...
+
+    public function fields(Request $request)
+    {
+        return [
+            // ...
+
+            FlaggedEnum::make('User Permissions')->attach(UserPermissions::class),
+
+            // ...
+        ];
+    }
+}
+```
+
+### Filters
+
+If you would like to use the provided Nova Select filter (which is compatible with both the `Enum` and `FlaggedEnum` fields), you can include it like this:
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserPermissions;
 use App\Enums\UserType;
 use SimpleSquid\Nova\Fields\Enum\EnumFilter;
 
@@ -85,18 +110,22 @@ class Example extends Resource
         return [
             new EnumFilter('user_type', UserType::class),
             
+            new EnumFilter('user_permissions', UserPermissions::class),
+            
             // Or with optional filter name:
-            // new EnumFilter('user_type', UserType::class, 'Type of user'),
+            (new EnumFilter('user_type', UserType::class))
+                ->name('Type of user'),
         ];
     }
 }
 ```
 
-Alternatively, you may wish to use the provided Nova Boolean filter:
+Alternatively, you may wish to use the provided Nova Boolean filter (which is also compatible with both the `Enum` and `FlaggedEnum` fields):
 
 ```php
 namespace App\Nova;
 
+use App\Enums\UserPermissions;
 use App\Enums\UserType;
 use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
 
@@ -109,8 +138,16 @@ class Example extends Resource
         return [
             new EnumBooleanFilter('user_type', UserType::class),
             
+            new EnumBooleanFilter('user_permissions', UserPermissions::class),
+            
             // Or with optional filter name:
-            // new EnumBooleanFilter('user_type', UserType::class, 'Type of user'),
+            (new EnumBooleanFilter('user_type', UserType::class))
+                ->name('Type of user'),
+            
+            // When filtering a FlaggedEnum, it will default to filtering
+            // by ANY flags, however you may wish to filter by ALL flags:
+            (new EnumBooleanFilter('user_permissions', UserPermissions::class))
+                ->filterAllFlags(),
         ];
     }
 }
