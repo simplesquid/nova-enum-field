@@ -31,9 +31,9 @@ class NoCastsFilterTest extends TestCase
         $this->models[2] = NoCastsModel::create(['enum' => StringEnum::Administrator]);
 
         $this->results = [
-            StringEnum::Moderator     => [0, 1],
+            StringEnum::Moderator => [0, 1],
             StringEnum::Administrator => [2],
-            StringEnum::Subscriber    => [],
+            StringEnum::Subscriber => [],
         ];
     }
 
