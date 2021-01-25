@@ -1,12 +1,12 @@
 <?php
 
-namespace SimpleSquid\Nova\Fields\Enum\Tests;
+namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
-use Laravel\Nova\NovaServiceProvider;
 use SimpleSquid\Nova\Fields\Enum\EnumFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedModel;
+use SimpleSquid\Nova\Fields\Enum\Tests\TestCase;
 
 class FlaggedFilterTest extends TestCase
 {
@@ -14,20 +14,15 @@ class FlaggedFilterTest extends TestCase
 
     private $models = [];
 
-    private $results = [
-        FlaggedEnum::None          => [0],
-        FlaggedEnum::ReadComments  => [1, 2],
-        FlaggedEnum::WriteComments => [2],
-        FlaggedEnum::EditComments  => [],
-    ];
+    private $results = [];
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        app()->register(NovaServiceProvider::class);
-
         $this->setUpDatabase($this->app);
+
+        $this->filter = new MockFilter(new EnumFilter('enum', FlaggedEnum::class));
 
         $this->models[0] = FlaggedModel::create(['enum' => FlaggedEnum::None]);
 
@@ -40,24 +35,19 @@ class FlaggedFilterTest extends TestCase
                                                                         ])
                                                 ]);
 
-        $this->filter = new MockFilter(new EnumFilter('enum', FlaggedEnum::class));
+        $this->results = [
+            FlaggedEnum::None          => [0],
+            FlaggedEnum::ReadComments  => [1, 2],
+            FlaggedEnum::WriteComments => [2],
+            FlaggedEnum::EditComments  => [],
+        ];
     }
 
     /** @test */
     public function it_contains_all_the_filter_values()
     {
-        foreach (array_keys($this->results) as $enum) {
+        foreach (FlaggedEnum::getValues() as $enum) {
             $this->filter->assertHasOption($enum);
-        }
-    }
-
-    /** @test */
-    public function it_returns_the_correct_number_of_results()
-    {
-        foreach ($this->results as $enum => $models) {
-            $response = $this->filter->apply(FlaggedModel::class, $enum);
-
-            $response->assertCount(count($models));
         }
     }
 
@@ -67,11 +57,13 @@ class FlaggedFilterTest extends TestCase
         foreach ($this->results as $enum => $models) {
             $response = $this->filter->apply(FlaggedModel::class, $enum);
 
+            $response->assertCount(count($models));
+
             foreach ($models as $contain) {
                 $response->assertContains($this->models[$contain]);
             }
 
-            foreach (array_diff([0, 1, 2], $models) as $missing) {
+            foreach (array_diff(array_keys($this->models), $models) as $missing) {
                 $response->assertMissing($this->models[$missing]);
             }
         }

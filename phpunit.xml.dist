@@ -19,7 +19,8 @@
     </coverage>
     <testsuites>
         <testsuite name="Simple Squid Test Suite">
-            <directory>tests</directory>
+            <directory>tests/Fields</directory>
+            <directory>tests/Filters</directory>
         </testsuite>
     </testsuites>
     <php>

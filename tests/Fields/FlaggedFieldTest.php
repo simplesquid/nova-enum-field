@@ -1,12 +1,12 @@
 <?php
 
-namespace SimpleSquid\Nova\Fields\Enum\Tests;
+namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\NovaServiceProvider;
 use SimpleSquid\Nova\Fields\Enum\FlaggedEnum as FlaggedEnumField;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedModel;
+use SimpleSquid\Nova\Fields\Enum\Tests\TestCase;
 
 class FlaggedFieldTest extends TestCase
 {
@@ -23,8 +23,6 @@ class FlaggedFieldTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        app()->register(NovaServiceProvider::class);
 
         $this->setUpDatabase($this->app);
 
@@ -56,9 +54,13 @@ class FlaggedFieldTest extends TestCase
     /** @test */
     public function it_displays_enum_options()
     {
-        $this->assertCount(3, $this->field->options);
+        $this->assertCount(count(FlaggedEnum::getValues()) - 1, $this->field->options);
 
-        foreach (array_keys($this->values) as $enum) {
+        foreach (FlaggedEnum::getValues() as $enum) {
+            if ($enum === FlaggedEnum::None) {
+                continue;
+            }
+
             $this->assertContains([
                                       'label' => FlaggedEnum::getDescription($enum),
                                       'name'  => $enum
@@ -71,7 +73,7 @@ class FlaggedFieldTest extends TestCase
     {
         $this->field->resolve($this->model);
 
-        $this->assertCount(3, $this->field->value);
+        $this->assertCount(count(FlaggedEnum::getValues()) - 1, $this->field->value);
 
         foreach (array_keys($this->values) as $enum) {
             $this->assertEquals(false, $this->field->value[$enum]);
@@ -81,7 +83,7 @@ class FlaggedFieldTest extends TestCase
 
         $this->field->resolve($this->model);
 
-        $this->assertCount(3, $this->field->value);
+        $this->assertCount(count(FlaggedEnum::getValues()) - 1, $this->field->value);
 
         foreach ($this->values as $enum => $value) {
             $this->assertEquals($value, $this->field->value[$enum]);
