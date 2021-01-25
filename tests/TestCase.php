@@ -3,27 +3,25 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
+use Laravel\Nova\NovaServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    protected function getPackageProviders($app)
     {
-        parent::setUp();
-
-        $this->setUpDatabase($this->app);
+        return [
+            NovaServiceProvider::class,
+        ];
     }
 
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     */
-    protected function setUpDatabase($app)
+    protected function setUpDatabase($app, $type = 'integer')
     {
         $this->artisan('migrate:fresh');
 
-        $app['db']->connection()->getSchemaBuilder()->create('example_models', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('example_models', function (Blueprint $table) use ($type) {
             $table->increments('id');
-            $table->integer('enum');
+            $table->$type('enum');
         });
     }
 }

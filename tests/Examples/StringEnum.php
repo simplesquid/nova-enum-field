@@ -9,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static Moderator()
  * @method static Subscriber()
  */
-class ExampleStringEnum extends Enum
+class StringEnum extends Enum
 {
     const Administrator = 'administrator';
 

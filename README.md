@@ -19,11 +19,11 @@ composer require simplesquid/nova-enum-field
 
 ## Setup
 
-This package requires that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like so:
+It is strongly recommended that you use Attribute Casting in your models. From the docs at [BenSampo/laravel-enum](https://github.com/BenSampo/laravel-enum#attribute-casting), this can be done like this:
 
 ```php
+use App\Enums\UserType;
 use BenSampo\Enum\Traits\CastsEnums;
-use BenSampo\Enum\Tests\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
@@ -38,12 +38,12 @@ class Example extends Model
 
 ## Usage
 
-You can use the `Enum` field in your Nova resource like so:
+You can use the `Enum` field in your Nova resource like this:
 
 ```php
 namespace App\Nova;
 
-use BenSampo\Enum\Tests\Enums\UserType;
+use App\Enums\UserType;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 
 class Example extends Resource
@@ -55,9 +55,99 @@ class Example extends Resource
         return [
             // ...
 
-            Enum::make('User Type')->attachEnum(UserType::class),
+            Enum::make('User Type')->attach(UserType::class),
 
             // ...
+        ];
+    }
+}
+```
+
+### Flagged Enums
+
+You can use the `FlaggedEnum` field in your Nova resource like this (see [Flagged/Bitwise Enum](https://github.com/BenSampo/laravel-enum#flaggedbitwise-enum) setup):
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserPermissions;
+use SimpleSquid\Nova\Fields\Enum\FlaggedEnum;
+
+class Example extends Resource
+{
+    // ...
+
+    public function fields(Request $request)
+    {
+        return [
+            // ...
+
+            FlaggedEnum::make('User Permissions')->attach(UserPermissions::class),
+
+            // ...
+        ];
+    }
+}
+```
+
+### Filters
+
+If you would like to use the provided Nova Select filter (which is compatible with both the `Enum` and `FlaggedEnum` fields), you can include it like this:
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserPermissions;
+use App\Enums\UserType;
+use SimpleSquid\Nova\Fields\Enum\EnumFilter;
+
+class Example extends Resource
+{
+    // ...
+
+    public function filters(Request $request)
+    {
+        return [
+            new EnumFilter('user_type', UserType::class),
+            
+            new EnumFilter('user_permissions', UserPermissions::class),
+            
+            // Or with optional filter name:
+            (new EnumFilter('user_type', UserType::class))
+                ->name('Type of user'),
+        ];
+    }
+}
+```
+
+Alternatively, you may wish to use the provided Nova Boolean filter (which is also compatible with both the `Enum` and `FlaggedEnum` fields):
+
+```php
+namespace App\Nova;
+
+use App\Enums\UserPermissions;
+use App\Enums\UserType;
+use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
+
+class Example extends Resource
+{
+    // ...
+
+    public function filters(Request $request)
+    {
+        return [
+            new EnumBooleanFilter('user_type', UserType::class),
+            
+            new EnumBooleanFilter('user_permissions', UserPermissions::class),
+            
+            // Or with optional filter name:
+            (new EnumBooleanFilter('user_type', UserType::class))
+                ->name('Type of user'),
+            
+            // When filtering a FlaggedEnum, it will default to filtering
+            // by ANY flags, however you may wish to filter by ALL flags:
+            (new EnumBooleanFilter('user_permissions', UserPermissions::class))
+                ->filterAllFlags(),
         ];
     }
 }
