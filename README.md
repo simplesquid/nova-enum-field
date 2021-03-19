@@ -153,6 +153,17 @@ class Example extends Resource
 }
 ```
 
+To specify default value for `EnumFilter` or `EnumBooleanFilter` you may specify a third parameter:
+```php
+new EnumFilter('user_type', UserType::class, UserType::Administrator()),
+
+new EnumBooleanFilter('user_type', UserType::class, [
+    UserType::Administrator => true,
+    UserType::Moderator => true,
+    UserType::Subscriber => false,
+]),
+```
+
 ## Testing
 
 ``` bash
