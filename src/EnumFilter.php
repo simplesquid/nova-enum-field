@@ -15,12 +15,15 @@ class EnumFilter extends Filter
 
     protected $class;
 
+    protected $default;
+
     protected $flagged;
 
-    public function __construct($column, $class)
+    public function __construct($column, $class, $default = null)
     {
         $this->column = $column;
         $this->class = $class;
+        $this->default = $default;
 
         $this->flagged = is_subclass_of($this->class, \BenSampo\Enum\FlaggedEnum::class);
     }
@@ -48,5 +51,14 @@ class EnumFilter extends Filter
     public function options(Request $request)
     {
         return array_flip($this->class::asSelectArray());
+    }
+
+    public function default()
+    {
+        if (is_null($this->default)) {
+            return parent::default();
+        }
+
+        return $this->default;
     }
 }
