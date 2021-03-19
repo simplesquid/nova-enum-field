@@ -11,11 +11,18 @@ class BooleanFilterTest extends TestCase
 {
     private $filter;
 
+    private $emptyFilter;
+
     private $mockFilter;
 
     protected function setUp(): void
     {
-        $this->filter = new EnumBooleanFilter('enum', IntegerEnum::class);
+        $this->filter = new EnumBooleanFilter('enum', IntegerEnum::class, [
+            IntegerEnum::Administrator => true,
+            IntegerEnum::Moderator => true,
+            IntegerEnum::Subscriber => false,
+        ]);
+        $this->emptyFilter = new EnumBooleanFilter('enum', IntegerEnum::class);
 
         $this->mockFilter = new MockFilter($this->filter);
     }
@@ -38,5 +45,25 @@ class BooleanFilterTest extends TestCase
         $this->assertInstanceOf(EnumBooleanFilter::class, $this->filter->name('Different name'));
 
         $this->assertEquals('Different name', $this->filter->name());
+    }
+
+    /** @test */
+    public function it_has_a_default_value()
+    {
+        $this->assertEquals([
+            IntegerEnum::Administrator => true,
+            IntegerEnum::Moderator => true,
+            IntegerEnum::Subscriber => false,
+        ], $this->filter->jsonSerialize()['currentValue']);
+    }
+
+    /** @test */
+    public function it_should_have_all_false_value_if_no_default_specified()
+    {
+        $this->assertEquals([
+            IntegerEnum::Administrator => false,
+            IntegerEnum::Moderator => false,
+            IntegerEnum::Subscriber => false,
+        ], $this->emptyFilter->jsonSerialize()['currentValue']);
     }
 }
