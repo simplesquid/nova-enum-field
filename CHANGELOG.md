@@ -2,8 +2,8 @@
 
 All notable changes to `nova-enum-field` will be documented in this file.
 
-## Unreleased
-- Added ability to specify default value for `EnumFilter` and `EnumBooleanFilter`
+## 2.3.1 - 2021-04-0
+- Add ability to specify default value/s for `EnumFilter` and `EnumBooleanFilter`.
 
 ## 2.3.0 - 2021-01-25
 
