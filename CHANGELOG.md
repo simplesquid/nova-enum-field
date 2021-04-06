@@ -2,6 +2,9 @@
 
 All notable changes to `nova-enum-field` will be documented in this file.
 
+## Unreleased
+- Added ability to specify default value for `EnumFilter` and `EnumBooleanFilter`
+
 ## 2.3.0 - 2021-01-25
 
 - Drop support for Laravel `7.x`

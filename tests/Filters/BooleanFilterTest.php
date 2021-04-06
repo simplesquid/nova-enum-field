@@ -39,4 +39,45 @@ class BooleanFilterTest extends TestCase
 
         $this->assertEquals('Different name', $this->filter->name());
     }
+
+    /** @test */
+    public function it_accepts_optional_default_values()
+    {
+        $this->filter->default(IntegerEnum::Moderator);
+
+        $this->assertEquals([
+            IntegerEnum::Administrator => false,
+            IntegerEnum::Moderator => true,
+            IntegerEnum::Subscriber => false,
+        ], $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default(IntegerEnum::Administrator());
+
+        $this->assertEquals([
+                                IntegerEnum::Administrator => true,
+                                IntegerEnum::Moderator => false,
+                                IntegerEnum::Subscriber => false,
+                            ], $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default([
+           IntegerEnum::Subscriber,
+           IntegerEnum::Moderator(),
+       ]);
+
+        $this->assertEquals([
+            IntegerEnum::Administrator => false,
+            IntegerEnum::Moderator => true,
+            IntegerEnum::Subscriber => true,
+        ], $this->filter->jsonSerialize()['currentValue']);
+    }
+
+    /** @test */
+    public function it_has_no_default_value_by_default()
+    {
+        $this->assertEquals([
+            IntegerEnum::Administrator => false,
+            IntegerEnum::Moderator => false,
+            IntegerEnum::Subscriber => false,
+        ], $this->filter->jsonSerialize()['currentValue']);
+    }
 }

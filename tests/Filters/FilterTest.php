@@ -39,4 +39,22 @@ class FilterTest extends TestCase
 
         $this->assertEquals('Different name', $this->filter->name());
     }
+
+    /** @test */
+    public function it_accepts_an_optional_default_value()
+    {
+        $this->filter->default(IntegerEnum::Moderator);
+
+        $this->assertEquals(IntegerEnum::Moderator, $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default(IntegerEnum::Subscriber());
+
+        $this->assertEquals(IntegerEnum::Subscriber, $this->filter->jsonSerialize()['currentValue']);
+    }
+
+    /** @test */
+    public function it_has_no_default_value_by_default()
+    {
+        $this->assertEquals('', $this->filter->jsonSerialize()['currentValue']);
+    }
 }

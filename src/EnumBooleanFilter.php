@@ -16,6 +16,8 @@ class EnumBooleanFilter extends BooleanFilter
 
     protected $class;
 
+    protected $default;
+
     protected $flagged;
 
     protected $scope = 'any';
@@ -89,5 +91,25 @@ class EnumBooleanFilter extends BooleanFilter
         }
 
         return array_flip($this->class::asSelectArray());
+    }
+
+    public function default()
+    {
+        if (isset(func_get_args()[0])) {
+            $this->default = collect(is_array(func_get_args()[0]) ? func_get_args()[0] : [func_get_args()[0]])
+                ->map(function ($value, $key) {
+                    return is_subclass_of($value, \BenSampo\Enum\Enum::class) ? $value->value : $value;
+                })->all();
+
+            return $this;
+        }
+
+        if (is_null($this->default)) {
+            return parent::default();
+        }
+
+        return collect($this->default)->mapWithKeys(function ($option) {
+            return [$option => true];
+        })->all() + parent::default();
     }
 }
