@@ -112,7 +112,7 @@ class Example extends Resource
             
             new EnumFilter('user_permissions', UserPermissions::class),
             
-            // Or with optional filter name:
+            // With optional filter name:
             (new EnumFilter('user_type', UserType::class))
                 ->name('Type of user'),
                 
@@ -188,6 +188,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 - [Ben Sampson](https://github.com/BenSampo)
 - [atymic](https://github.com/atymic)
 - [Robin D'Arcy](https://github.com/rdarcy1)
+- [Antoni Siek](https://github.com/ImJustToNy)
 - [All Contributors](../../contributors)
 
 Package skeleton based on [spatie/skeleton-php](https://github.com/spatie/skeleton-php).
