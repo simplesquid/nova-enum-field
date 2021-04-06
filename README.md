@@ -1,7 +1,8 @@
 # An enum field for Laravel Nova
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
-[![Build Status](https://img.shields.io/travis/simplesquid/nova-enum-field/master.svg?style=flat-square)](https://travis-ci.org/simplesquid/nova-enum-field)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/simplesquid/nova-enum-field/Run%20tests?label=tests)](https://github.com/simplesquid/nova-enum-field/actions?query=workflow%3A"Run+tests"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/simplesquid/nova-enum-field/Check%20&%20fix%20styling?label=code%20style)](https://github.com/simplesquid/nova-enum-field/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/simplesquid/nova-enum-field.svg?style=flat-square)](https://packagist.org/packages/simplesquid/nova-enum-field)
 
