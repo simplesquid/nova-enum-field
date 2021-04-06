@@ -109,7 +109,7 @@ class EnumBooleanFilter extends BooleanFilter
         }
 
         return collect($this->default)->mapWithKeys(function ($option) {
-                return [$option => true];
-            })->all() + parent::default();
+            return [$option => true];
+        })->all() + parent::default();
     }
 }
