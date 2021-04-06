@@ -11,14 +11,11 @@ class FilterTest extends TestCase
 {
     private $filter;
 
-    private $emptyFilter;
-
     private $mockFilter;
 
     protected function setUp(): void
     {
-        $this->filter = new EnumFilter('enum', IntegerEnum::class, IntegerEnum::Moderator());
-        $this->emptyFilter = new EnumFilter('enum', IntegerEnum::class);
+        $this->filter = new EnumFilter('enum', IntegerEnum::class);
 
         $this->mockFilter = new MockFilter($this->filter);
     }
@@ -44,14 +41,20 @@ class FilterTest extends TestCase
     }
 
     /** @test */
-    public function it_has_a_default_value()
+    public function it_accepts_an_optional_default_value()
     {
-        $this->assertEquals(IntegerEnum::Moderator(), $this->filter->jsonSerialize()['currentValue']);
+        $this->filter->default(IntegerEnum::Moderator);
+
+        $this->assertEquals(IntegerEnum::Moderator, $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default(IntegerEnum::Subscriber());
+
+        $this->assertEquals(IntegerEnum::Subscriber, $this->filter->jsonSerialize()['currentValue']);
     }
 
     /** @test */
-    public function it_shouldnt_have_a_value_if_no_default()
+    public function it_has_no_default_value_by_default()
     {
-        $this->assertEquals('', $this->emptyFilter->jsonSerialize()['currentValue']);
+        $this->assertEquals('', $this->filter->jsonSerialize()['currentValue']);
     }
 }

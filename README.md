@@ -115,6 +115,10 @@ class Example extends Resource
             // Or with optional filter name:
             (new EnumFilter('user_type', UserType::class))
                 ->name('Type of user'),
+                
+             // With optional default value:
+            (new EnumFilter('user_type', UserType::class))
+                ->default(UserType::Administrator),
         ];
     }
 }
@@ -140,9 +144,16 @@ class Example extends Resource
             
             new EnumBooleanFilter('user_permissions', UserPermissions::class),
             
-            // Or with optional filter name:
+            // With optional filter name:
             (new EnumBooleanFilter('user_type', UserType::class))
                 ->name('Type of user'),
+                
+            // With optional default values:
+            (new EnumBooleanFilter('user_type', UserType::class))
+                ->default([
+                    UserType::Administrator,
+                    UserType::Moderator,
+                ]),
             
             // When filtering a FlaggedEnum, it will default to filtering
             // by ANY flags, however you may wish to filter by ALL flags:
@@ -151,17 +162,6 @@ class Example extends Resource
         ];
     }
 }
-```
-
-To specify default value for `EnumFilter` or `EnumBooleanFilter` you may specify a third parameter:
-```php
-new EnumFilter('user_type', UserType::class, UserType::Administrator()),
-
-new EnumBooleanFilter('user_type', UserType::class, [
-    UserType::Administrator => true,
-    UserType::Moderator => true,
-    UserType::Subscriber => false,
-]),
 ```
 
 ## Testing

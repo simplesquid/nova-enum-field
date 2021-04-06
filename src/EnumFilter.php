@@ -19,11 +19,10 @@ class EnumFilter extends Filter
 
     protected $flagged;
 
-    public function __construct($column, $class, $default = null)
+    public function __construct($column, $class)
     {
         $this->column = $column;
         $this->class = $class;
-        $this->default = $default;
 
         $this->flagged = is_subclass_of($this->class, \BenSampo\Enum\FlaggedEnum::class);
     }
@@ -55,6 +54,12 @@ class EnumFilter extends Filter
 
     public function default()
     {
+        if (isset(func_get_args()[0])) {
+            $this->default = is_subclass_of(func_get_args()[0], \BenSampo\Enum\Enum::class) ? func_get_args()[0]->value : func_get_args()[0];
+
+            return $this;
+        }
+
         if (is_null($this->default)) {
             return parent::default();
         }

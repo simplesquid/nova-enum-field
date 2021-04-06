@@ -11,18 +11,11 @@ class BooleanFilterTest extends TestCase
 {
     private $filter;
 
-    private $emptyFilter;
-
     private $mockFilter;
 
     protected function setUp(): void
     {
-        $this->filter = new EnumBooleanFilter('enum', IntegerEnum::class, [
-            IntegerEnum::Administrator => true,
-            IntegerEnum::Moderator => true,
-            IntegerEnum::Subscriber => false,
-        ]);
-        $this->emptyFilter = new EnumBooleanFilter('enum', IntegerEnum::class);
+        $this->filter = new EnumBooleanFilter('enum', IntegerEnum::class);
 
         $this->mockFilter = new MockFilter($this->filter);
     }
@@ -48,22 +41,43 @@ class BooleanFilterTest extends TestCase
     }
 
     /** @test */
-    public function it_has_a_default_value()
+    public function it_accepts_optional_default_values()
     {
+        $this->filter->default(IntegerEnum::Moderator);
+
         $this->assertEquals([
-            IntegerEnum::Administrator => true,
+            IntegerEnum::Administrator => false,
             IntegerEnum::Moderator => true,
             IntegerEnum::Subscriber => false,
+        ], $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default(IntegerEnum::Administrator());
+
+        $this->assertEquals([
+                                IntegerEnum::Administrator => true,
+                                IntegerEnum::Moderator => false,
+                                IntegerEnum::Subscriber => false,
+                            ], $this->filter->jsonSerialize()['currentValue']);
+
+        $this->filter->default([
+           IntegerEnum::Subscriber,
+           IntegerEnum::Moderator(),
+       ]);
+
+        $this->assertEquals([
+            IntegerEnum::Administrator => false,
+            IntegerEnum::Moderator => true,
+            IntegerEnum::Subscriber => true,
         ], $this->filter->jsonSerialize()['currentValue']);
     }
 
     /** @test */
-    public function it_should_have_all_false_value_if_no_default_specified()
+    public function it_has_no_default_value_by_default()
     {
         $this->assertEquals([
             IntegerEnum::Administrator => false,
             IntegerEnum::Moderator => false,
             IntegerEnum::Subscriber => false,
-        ], $this->emptyFilter->jsonSerialize()['currentValue']);
+        ], $this->filter->jsonSerialize()['currentValue']);
     }
 }
