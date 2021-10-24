@@ -14,6 +14,7 @@ coverage
 .php_cs
 .php_cs.cache
 psalm.xml
+.php-cs-fixer.cache
 
 .idea
 

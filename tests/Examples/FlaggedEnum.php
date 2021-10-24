@@ -12,9 +12,9 @@ use BenSampo\Enum\FlaggedEnum as BaseFlaggedEnum;
  */
 final class FlaggedEnum extends BaseFlaggedEnum
 {
-    const ReadComments = 1 << 0;
+    public const ReadComments = 1 << 0;
 
-    const WriteComments = 1 << 1;
+    public const WriteComments = 1 << 1;
 
-    const EditComments = 1 << 2;
+    public const EditComments = 1 << 2;
 }
