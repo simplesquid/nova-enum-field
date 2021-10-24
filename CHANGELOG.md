@@ -2,7 +2,12 @@
 
 All notable changes to `nova-enum-field` will be documented in this file.
 
-## 2.3.1 - 2021-04-0
+## 2.4.0 - 2021-10-24
+- Allow nullable Enum fields.
+- Fix filter issue when multiple enum filters are used.
+- Fix and improve GitHub actions.
+
+## 2.3.1 - 2021-04-06
 - Add ability to specify default value/s for `EnumFilter` and `EnumBooleanFilter`.
 
 ## 2.3.0 - 2021-01-25
