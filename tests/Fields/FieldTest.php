@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use BenSampo\Enum\Rules\EnumValue;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\TestCase;
@@ -55,5 +56,15 @@ class FieldTest extends TestCase
                                       'value' => $enum,
                                   ], $this->field->meta['options']);
         }
+    }
+
+    /** @test */
+    public function it_can_be_nullable()
+    {
+        $this->field->nullable();
+
+        $this->assertNotContains('required', $this->field->rules);
+        $this->assertContains('nullable', $this->field->rules);
+        $this->assertFalse($this->field->isRequired(new NovaRequest()));
     }
 }
