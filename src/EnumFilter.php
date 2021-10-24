@@ -47,6 +47,11 @@ class EnumFilter extends Filter
         return $query->where($this->column, $value);
     }
 
+    public function key()
+    {
+        return 'enum_filter_' . $this->column;
+    }
+
     public function options(Request $request)
     {
         return array_flip($this->class::asSelectArray());
