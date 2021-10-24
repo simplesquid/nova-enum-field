@@ -11,9 +11,9 @@ use BenSampo\Enum\Enum;
  */
 class IntegerEnum extends Enum
 {
-    const Administrator = 0;
+    public const Administrator = 0;
 
-    const Moderator = 1;
+    public const Moderator = 1;
 
-    const Subscriber = 2;
+    public const Subscriber = 2;
 }

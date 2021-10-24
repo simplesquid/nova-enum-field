@@ -11,9 +11,9 @@ use BenSampo\Enum\Enum;
  */
 class StringEnum extends Enum
 {
-    const Administrator = 'administrator';
+    public const Administrator = 'administrator';
 
-    const Moderator = 'moderator';
+    public const Moderator = 'moderator';
 
-    const Subscriber = 'subscriber';
+    public const Subscriber = 'subscriber';
 }
