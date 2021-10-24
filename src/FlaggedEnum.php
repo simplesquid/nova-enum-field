@@ -8,12 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class FlaggedEnum extends BooleanGroup
 {
-    public function __construct($name, $attribute = null, $resolveCallback = null)
-    {
-        parent::__construct($name, $attribute, $resolveCallback);
-
-        $this->noValueText('None');
-    }
+    public $noValueText = 'None';
 
     public function attach($class)
     {
