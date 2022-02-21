@@ -20,10 +20,10 @@ jobs:
         include:
           - laravel: 8.*
             testbench: 6.*
-            enum: "4.*"
+            enum: 4.*
           - laravel: 9.*
             testbench: 7.*
-            enum: "5.*"
+            enum: 5.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "bensampo/laravel-enum:${{ matrix.enum }}" --no-interaction --no-update
+          composer require "illuminate/support:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "bensampo/laravel-enum:${{ matrix.enum }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
