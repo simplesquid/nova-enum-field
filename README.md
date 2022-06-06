@@ -24,13 +24,10 @@ It is strongly recommended that you use Attribute Casting in your models. From t
 
 ```php
 use App\Enums\UserType;
-use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
 {
-    use CastsEnums;
-
     protected $casts = [
         'user_type' => UserType::class,
     ];
