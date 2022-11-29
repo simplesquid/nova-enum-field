@@ -34,7 +34,7 @@ class FieldTest extends TestCase
     /** @test */
     public function it_allows_an_enum_to_be_attached()
     {
-        $this->assertArrayHasKey('options', $this->field->meta);
+        $this->assertObjectHasAttribute('optionsCallback', $this->field);
     }
 
     /** @test */
@@ -48,14 +48,9 @@ class FieldTest extends TestCase
     /** @test */
     public function it_displays_enum_options()
     {
-        $this->assertCount(count(IntegerEnum::getValues()), $this->field->meta['options']);
+        $this->assertCount(count(IntegerEnum::getValues()), $this->field->optionsCallback);
 
-        foreach (IntegerEnum::getValues() as $enum) {
-            $this->assertContains([
-                                      'label' => IntegerEnum::getDescription($enum),
-                                      'value' => $enum,
-                                  ], $this->field->meta['options']);
-        }
+        $this->assertSame(IntegerEnum::asSelectArray(), $this->field->optionsCallback);
     }
 
     /** @test */

@@ -2,6 +2,22 @@
 
 All notable changes to `nova-enum-field` will be documented in this file.
 
+## 3.0.0 - 2022-11-29
+- Add support for BenSampo/laravel-enum v6
+- Laravel v9 is now required
+- PHP 8.0 or higher is now required
+- BenSampo/laravel-enum v5 or higher is now required
+
+## 2.7.0 - 2022-04-27
+- Support Laravel Nova v4
+
+## 2.6.0 - 2022-02-22
+- Support Laravel v9
+- Support BenSampo/laravel-enum v5
+
+## 2.5.0 - 2021-12-20
+- Upgrade to v4 of BenSampo/laravel-enum
+
 ## 2.4.0 - 2021-10-24
 - Allow nullable Enum fields.
 - Fix filter issue when multiple enum filters are used.

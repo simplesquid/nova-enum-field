@@ -38,7 +38,7 @@ class StringFieldTest extends TestCase
     {
         $this->field->resolveForDisplay($this->model);
 
-        $this->assertSame(StringEnum::Moderator()->description, $this->field->value);
+        $this->assertSame(StringEnum::Moderator()->description, $this->field->displayedAs);
     }
 
     /** @test */
