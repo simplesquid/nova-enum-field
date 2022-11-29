@@ -38,7 +38,7 @@ class IntegerFieldTest extends TestCase
     {
         $this->field->resolveForDisplay($this->model);
 
-        $this->assertSame(IntegerEnum::Moderator()->description, $this->field->displayedAs);
+        $this->assertSame(IntegerEnum::Moderator()->description, $this->field->displayedAs ?? $this->field->value);
     }
 
     /** @test */
