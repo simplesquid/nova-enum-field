@@ -193,7 +193,7 @@ Package skeleton based on [spatie/skeleton-php](https://github.com/spatie/skelet
 
 ## About us
 
-SimpleSquid is a small web development and design company based in Cape Town, South Africa.
+SimpleSquid is a small web development and design company based in Valkenburg, Netherlands.
 
 ## License
 
