@@ -25,7 +25,7 @@ jobs:
           tools: cs2pr
 
       - name: 📦 Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-ansi --no-scripts --no-progress
+        run: composer update --prefer-dist --no-interaction --no-ansi --no-scripts --no-progress
 
       - name: 📝 Run Laravel Pint
         id: run-pint
