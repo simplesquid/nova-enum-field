@@ -1,4 +1,4 @@
-name: Check code styling
+name: Code styling
 
 on:
   push:
@@ -22,15 +22,12 @@ jobs:
         with:
           php-version: 8.1
           coverage: none
-          tools: cs2pr
-
-      - name: 📦 Install Composer dependencies
-        run: composer update --prefer-dist --no-interaction --no-ansi --no-scripts --no-progress
+          tools: cs2pr, pint
 
       - name: 📝 Run Laravel Pint
         id: run-pint
-        run: ./vendor/bin/pint --test
+        run: pint --test
 
       - name: 📝 Generate GitHub annotations
         if: failure() && steps.run-pint.outcome != 'success'
-        run: ./vendor/bin/pint --test --format=checkstyle | cs2pr
+        run: pint --test --format=checkstyle | cs2pr
