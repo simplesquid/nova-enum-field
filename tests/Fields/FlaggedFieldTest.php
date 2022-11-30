@@ -62,9 +62,9 @@ class FlaggedFieldTest extends TestCase
             }
 
             $this->assertContains([
-                                      'label' => FlaggedEnum::getDescription($enum),
-                                      'name' => $enum,
-                                  ], $this->field->options);
+                'label' => FlaggedEnum::getDescription($enum),
+                'name' => $enum,
+            ], $this->field->options);
         }
     }
 

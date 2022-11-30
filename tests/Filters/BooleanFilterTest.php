@@ -54,15 +54,15 @@ class BooleanFilterTest extends TestCase
         $this->filter->default(IntegerEnum::Administrator());
 
         $this->assertEquals([
-                                IntegerEnum::Administrator => true,
-                                IntegerEnum::Moderator => false,
-                                IntegerEnum::Subscriber => false,
-                            ], $this->filter->jsonSerialize()['currentValue']);
+            IntegerEnum::Administrator => true,
+            IntegerEnum::Moderator => false,
+            IntegerEnum::Subscriber => false,
+        ], $this->filter->jsonSerialize()['currentValue']);
 
         $this->filter->default([
-           IntegerEnum::Subscriber,
-           IntegerEnum::Moderator(),
-       ]);
+            IntegerEnum::Subscriber,
+            IntegerEnum::Moderator(),
+        ]);
 
         $this->assertEquals([
             IntegerEnum::Administrator => false,

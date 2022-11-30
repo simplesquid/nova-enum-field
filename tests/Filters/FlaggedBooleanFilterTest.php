@@ -34,11 +34,11 @@ class FlaggedBooleanFilterTest extends TestCase
         $this->models[1] = FlaggedModel::create(['enum' => FlaggedEnum::ReadComments]);
 
         $this->models[2] = FlaggedModel::create([
-                                                    'enum' => array_sum([
-                                                                            FlaggedEnum::ReadComments,
-                                                                            FlaggedEnum::WriteComments,
-                                                                        ]),
-                                                ]);
+            'enum' => array_sum([
+                FlaggedEnum::ReadComments,
+                FlaggedEnum::WriteComments,
+            ]),
+        ]);
 
         $this->results = [
             FlaggedEnum::None => [0],

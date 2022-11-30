@@ -33,6 +33,7 @@
     },
     "require-dev": {
         "joshgaber/novaunit": "^3.0",
+        "laravel/pint": "^1.2",
         "mockery/mockery": "^1.3.3",
         "nunomaduro/collision": "^6.1",
         "orchestra/testbench": "^7.0",

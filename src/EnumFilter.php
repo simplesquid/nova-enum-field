@@ -49,7 +49,7 @@ class EnumFilter extends Filter
 
     public function key()
     {
-        return 'enum_filter_' . $this->column;
+        return 'enum_filter_'.$this->column;
     }
 
     public function options(Request $request)

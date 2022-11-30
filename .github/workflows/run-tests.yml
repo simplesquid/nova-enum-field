@@ -11,6 +11,7 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: true
       matrix:
@@ -32,32 +33,32 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: nova_enum_field
         ports:
-          - 3306
+          - "3306:3306"
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: 📚 Checkout code
+        uses: actions/checkout@v3
 
-      - name: Setup PHP
+      - name: 🔥 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          extensions: bcmath, curl, dom, fileinfo, intl, libxml, mbstring, pcntl, pdo, sqlite, zip
           coverage: none
 
-      - name: Setup problem matchers
+      - name: 🔎 Setup problem matchers
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies
+      - name: 📦 Install Composer dependencies
         run: |
           composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
           composer require "illuminate/support:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "bensampo/laravel-enum:${{ matrix.enum }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-ansi --no-scripts --no-progress
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
+      - name: 🧪 Run test suite
+        run: ./vendor/bin/phpunit
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: 3306

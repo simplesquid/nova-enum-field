@@ -86,7 +86,7 @@ class EnumBooleanFilter extends BooleanFilter
 
     public function key()
     {
-        return 'enum_boolean_filter_' . $this->column;
+        return 'enum_boolean_filter_'.$this->column;
     }
 
     public function options(Request $request)
