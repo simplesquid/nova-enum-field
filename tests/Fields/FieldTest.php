@@ -34,7 +34,8 @@ class FieldTest extends TestCase
     /** @test */
     public function it_allows_an_enum_to_be_attached()
     {
-        $this->assertObjectHasAttribute('optionsCallback', $this->field);
+        $this->assertIsObject($this->field);
+        $this->assertTrue(property_exists($this->field, 'optionsCallback'));
     }
 
     /** @test */
