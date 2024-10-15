@@ -44,7 +44,7 @@ class StringFieldTest extends TestCase
     /** @test */
     public function it_fills_database_with_enum_value()
     {
-        $request = new NovaRequest();
+        $request = new NovaRequest;
         $request->query->add(['enum' => StringEnum::Subscriber]);
 
         $this->field->fill($request, $this->model);

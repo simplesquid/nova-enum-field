@@ -36,7 +36,7 @@ class Enum extends Select
     public function attach($class)
     {
         return $this->options($class::asSelectArray())
-                    ->rules($this->nullable ? 'nullable' : 'required', new EnumValue($class, false));
+            ->rules($this->nullable ? 'nullable' : 'required', new EnumValue($class, false));
     }
 
     public function nullable($nullable = true, $values = null)

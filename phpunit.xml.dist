@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="true">
-    <coverage>
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-    </coverage>
+         colors="true"
+>
     <testsuites>
         <testsuite name="Simple Squid Test Suite">
             <directory>tests/Fields</directory>
             <directory>tests/Filters</directory>
         </testsuite>
     </testsuites>
+    <coverage/>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
     <php>
         <env name="DB_CONNECTION" value="mysql"/>
         <env name="DB_USERNAME" value="root"/>
         <env name="DB_DATABASE" value="nova_enum_field"/>
         <env name="DB_HOST" value="127.0.0.1"/>
         <env name="DB_PORT" value="3306"/>
+        <env name="DB_COLLATION" value="utf8mb4_unicode_ci"/>
     </php>
 </phpunit>
