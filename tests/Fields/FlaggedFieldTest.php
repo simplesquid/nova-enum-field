@@ -93,7 +93,7 @@ class FlaggedFieldTest extends TestCase
     /** @test */
     public function it_fills_database_with_flagged_enum_value()
     {
-        $request = new NovaRequest();
+        $request = new NovaRequest;
         $request->query->add(['enum' => json_encode($this->values)]);
 
         $this->field->fill($request, $this->model);

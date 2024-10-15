@@ -61,6 +61,6 @@ class FieldTest extends TestCase
 
         $this->assertNotContains('required', $this->field->rules);
         $this->assertContains('nullable', $this->field->rules);
-        $this->assertFalse($this->field->isRequired(new NovaRequest()));
+        $this->assertFalse($this->field->isRequired(new NovaRequest));
     }
 }
