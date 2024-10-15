@@ -17,13 +17,13 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         php: [ 8.2, 8.3 ]
-        laravel: [ "^10.0", "^11.0" ]
+        laravel: [ "^10.0", "^11.1" ]
         stability: [ prefer-lowest, prefer-stable ]
         include:
           - laravel: "^10.0"
             testbench: "^8.0"
             enum: "^6.0"
-          - laravel: "^11.0"
+          - laravel: "^11.1"
             testbench: "^9.0"
             enum: "^6.0"
 
