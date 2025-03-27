@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\FlaggedEnum as FlaggedEnumField;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedModel;
@@ -31,7 +32,7 @@ class FlaggedFieldTest extends TestCase
         $this->model = FlaggedModel::create(['enum' => FlaggedEnum::None]);
     }
 
-    /** @test */
+    #[Test]
     public function it_starts_with_no_options()
     {
         $field = FlaggedEnumField::make('Enum');
@@ -39,19 +40,19 @@ class FlaggedFieldTest extends TestCase
         $this->assertEmpty($field->options);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_an_enum_to_be_attached()
     {
         $this->assertNotEmpty($this->field->options);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_no_value_text()
     {
         $this->assertSame('None', $this->field->noValueText);
     }
 
-    /** @test */
+    #[Test]
     public function it_displays_enum_options()
     {
         $this->assertCount(count(FlaggedEnum::getValues()) - 1, $this->field->options);
@@ -68,7 +69,7 @@ class FlaggedFieldTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_resolves_enum_values()
     {
         $this->field->resolve($this->model);
@@ -90,7 +91,7 @@ class FlaggedFieldTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_fills_database_with_flagged_enum_value()
     {
         $request = new NovaRequest;

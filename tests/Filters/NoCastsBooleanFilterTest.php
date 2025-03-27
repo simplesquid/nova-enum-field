@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Filters;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\NoCastsModel;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\StringEnum;
@@ -54,7 +55,7 @@ class NoCastsBooleanFilterTest extends TestCase
         return $this->getOptions($keys, $newOptions);
     }
 
-    /** @test */
+    #[Test]
     public function it_contains_all_the_filter_values()
     {
         foreach (StringEnum::getValues() as $enum) {
@@ -62,7 +63,7 @@ class NoCastsBooleanFilterTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_the_correct_results()
     {
         foreach ($options = $this->getOptions(StringEnum::getValues()) as $option) {

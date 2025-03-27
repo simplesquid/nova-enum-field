@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Filters;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\EnumFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\TestCase;
@@ -20,19 +21,19 @@ class FilterTest extends TestCase
         $this->mockFilter = new MockFilter($this->filter);
     }
 
-    /** @test */
+    #[Test]
     public function it_is_a_select_filter()
     {
         $this->mockFilter->assertSelectFilter();
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_default_name()
     {
         $this->assertEquals('Enum', $this->filter->name());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_have_a_different_name()
     {
         $this->assertInstanceOf(EnumFilter::class, $this->filter->name('Different name'));
@@ -40,7 +41,7 @@ class FilterTest extends TestCase
         $this->assertEquals('Different name', $this->filter->name());
     }
 
-    /** @test */
+    #[Test]
     public function it_accepts_an_optional_default_value()
     {
         $this->filter->default(IntegerEnum::Moderator);
@@ -52,7 +53,7 @@ class FilterTest extends TestCase
         $this->assertEquals(IntegerEnum::Subscriber, $this->filter->jsonSerialize()['currentValue']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_no_default_value_by_default()
     {
         $this->assertEquals('', $this->filter->jsonSerialize()['currentValue']);
