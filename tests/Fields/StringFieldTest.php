@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\StringEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\StringModel;
@@ -25,7 +26,7 @@ class StringFieldTest extends TestCase
         $this->model = StringModel::create(['enum' => StringEnum::Moderator]);
     }
 
-    /** @test */
+    #[Test]
     public function it_resolves_enum_value()
     {
         $this->field->resolve($this->model);
@@ -33,7 +34,7 @@ class StringFieldTest extends TestCase
         $this->assertSame(StringEnum::Moderator, $this->field->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_displays_enum_description()
     {
         $this->field->resolveForDisplay($this->model);
@@ -41,7 +42,7 @@ class StringFieldTest extends TestCase
         $this->assertSame(StringEnum::Moderator()->description, $this->field->displayedAs ?? $this->field->value);
     }
 
-    /** @test */
+    #[Test]
     public function it_fills_database_with_enum_value()
     {
         $request = new NovaRequest;

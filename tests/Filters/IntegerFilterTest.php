@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Filters;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\EnumFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerModel;
@@ -37,7 +38,7 @@ class IntegerFilterTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function it_contains_all_the_filter_values()
     {
         foreach (IntegerEnum::getValues() as $enum) {
@@ -45,7 +46,7 @@ class IntegerFilterTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_the_correct_results()
     {
         foreach ($this->results as $enum => $models) {

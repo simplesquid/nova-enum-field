@@ -4,6 +4,7 @@ namespace SimpleSquid\Nova\Fields\Enum\Tests\Fields;
 
 use BenSampo\Enum\Rules\EnumValue;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\Enum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\IntegerEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\TestCase;
@@ -21,7 +22,7 @@ class FieldTest extends TestCase
         $this->field = Enum::make('Enum')->attach(IntegerEnum::class);
     }
 
-    /** @test */
+    #[Test]
     public function it_starts_with_no_options_and_rules()
     {
         $field = Enum::make('Enum');
@@ -31,14 +32,14 @@ class FieldTest extends TestCase
         $this->assertEmpty($field->rules);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_an_enum_to_be_attached()
     {
         $this->assertIsObject($this->field);
         $this->assertTrue(property_exists($this->field, 'optionsCallback'));
     }
 
-    /** @test */
+    #[Test]
     public function it_adds_correct_rules()
     {
         $this->assertContains('required', $this->field->rules);
@@ -46,7 +47,7 @@ class FieldTest extends TestCase
         $this->assertContainsEquals(new EnumValue(IntegerEnum::class, false), $this->field->rules);
     }
 
-    /** @test */
+    #[Test]
     public function it_displays_enum_options()
     {
         $this->assertCount(count(IntegerEnum::getValues()), $this->field->optionsCallback);
@@ -54,7 +55,7 @@ class FieldTest extends TestCase
         $this->assertSame(IntegerEnum::asSelectArray(), $this->field->optionsCallback);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_nullable()
     {
         $this->field->nullable();

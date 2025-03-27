@@ -3,6 +3,7 @@
 namespace SimpleSquid\Nova\Fields\Enum\Tests\Filters;
 
 use JoshGaber\NovaUnit\Filters\MockFilter;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleSquid\Nova\Fields\Enum\EnumBooleanFilter;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedEnum;
 use SimpleSquid\Nova\Fields\Enum\Tests\Examples\FlaggedModel;
@@ -65,7 +66,7 @@ class FlaggedBooleanFilterTest extends TestCase
         return $this->getOptions($keys, $newOptions);
     }
 
-    /** @test */
+    #[Test]
     public function it_contains_all_the_filter_values()
     {
         foreach (array_keys($this->results) as $enum) {
@@ -73,7 +74,7 @@ class FlaggedBooleanFilterTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_filter_by_all_selected_options()
     {
         $this->filter->filterAllFlags();
@@ -89,7 +90,7 @@ class FlaggedBooleanFilterTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_the_correct_results_when_filtering_by_any_flag()
     {
         foreach ($options = $this->getOptions(FlaggedEnum::getValues()) as $option) {
@@ -114,7 +115,7 @@ class FlaggedBooleanFilterTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_the_correct_results_when_filtering_by_all_flags()
     {
         $this->filter->filterAllFlags();
